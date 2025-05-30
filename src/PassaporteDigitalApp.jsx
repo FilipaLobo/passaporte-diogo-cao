@@ -32,6 +32,7 @@ const postos = [
 function App() {
   const [nome, setNome] = useState("");
   const [visitados, setVisitados] = useState([]);
+  const [paginaInicial, setPaginaInicial] = useState(true);
 
   useEffect(() => {
     if (!nome) return;
@@ -57,6 +58,19 @@ function App() {
 
   const postosCompletos = visitados.length;
   const totalPostos = postos.length;
+
+  if (paginaInicial) {
+    return (
+      <div style={{ padding: 20, fontFamily: 'sans-serif', textAlign: 'center' }}>
+        <h1>🎉 Bem-vindo ao Dia Diogo Cão! 🎉</h1>
+        <p>Prepara-te para um dia mágico e inesquecível repleto de criatividade, ciência, arte e diversão!</p>
+        <p>Explora todos os postos e carimba o teu passaporte digital. No final, há uma recompensa à tua espera! 🎁</p>
+        <button onClick={() => setPaginaInicial(false)} style={{ marginTop: 20, padding: "10px 20px", fontSize: 16 }}>
+          Começar Exploração 🚀
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div style={{ padding: 20, fontFamily: 'sans-serif' }}>
