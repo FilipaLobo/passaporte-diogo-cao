@@ -64,7 +64,11 @@ export default function PassaporteDigitalApp() {
   if (!progresso.jogador) {
     return (
       <div className="p-4 max-w-md mx-auto">
-        <img src="/Cartaz Dia Diogo Cão25.png" alt="Cartaz" className="rounded-xl shadow mb-4 w-full" />
+       <img
+  src="/Cartaz Dia Diogo Cão25.png"
+  alt="Cartaz Dia Diogo Cão"
+  className="rounded-xl shadow mb-4 w-full max-h-[500px] object-contain"
+/>
         <div className="border rounded-xl p-4 shadow">
           <h1 className="text-xl font-bold mb-4">Bem-vindo ao Passaporte Digital!</h1>
           <input
