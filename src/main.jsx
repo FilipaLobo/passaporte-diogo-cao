@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import PassaporteDigitalApp from "./PassaporteDigitalApp";
+import App from "./PassaporteDigitalApp";
 import "./style.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
