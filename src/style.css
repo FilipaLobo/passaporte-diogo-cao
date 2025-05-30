@@ -1,0 +1,54 @@
+
+body {
+  font-family: sans-serif;
+  background: #e0ffe0;
+  margin: 0;
+  padding: 20px;
+}
+.container {
+  max-width: 600px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+input.input {
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+button {
+  padding: 10px 20px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+.posto {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  background: #f9f9f9;
+}
+.posto.visitado {
+  background: #d4edda;
+  border-color: #28a745;
+}
+.congrats {
+  background: #d1ecf1;
+  color: #0c5460;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 10px 0;
+}
