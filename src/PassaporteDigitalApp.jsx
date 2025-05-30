@@ -3,7 +3,66 @@ import React, { useState, useEffect } from "react";
 import { Html5QrcodeScanner } from "html5-qrcode";
 
 const postos = [
-  // ... (lista de postos como atualizada anteriormente com descricao incluída)
+  {
+    id: "posto01",
+    nome: "Diogolândia",
+    local: "Pavilhão 1",
+    descricao: "Embarca numa viagem mágica pelo reino da criatividade! Poderás explorar uma exposição cheia de cor, imaginação e talento dos pequenos grandes exploradores desde a Pré até ao 1.º Ciclo. Cada paragem é uma surpresa — desde castelos de papel até mares de ideias! Vem descobrir onde a imaginação dos nossos alunos ganha vida!"
+  },
+  {
+    id: "posto02",
+    nome: "Escola Fixa de Trânsito",
+    local: "Campo junto ao Pavilhão 1",
+    descricao: "Transforma-te num verdadeiro explorador da estrada! Onde as regras de segurança ganham vida entre curvas divertidas, sinais misteriosos e cruzamentos cheios de ação! Prepara-te para acelerar o conhecimento e travar só para aprender — sempre com segurança e um sorriso na cara!"
+  },
+  {
+    id: "posto03",
+    nome: "Palco das Maravilhas",
+    local: "Campo com coberto",
+    descricao: "O coração da festa do Dia Diogo Cão, com apresentações únicas e cheias de talento: dança, teatro e performances criativas que prometem encantar e surpreender!"
+  },
+  {
+    id: "posto04",
+    nome: "Receção",
+    local: "Entrada da escola",
+    descricao: "Bem-vindos ao ponto de partida da nossa viagem fantástica! Aqui, recebes informações e levantas a tua senha de almoço para repor energias durante o dia."
+  },
+  {
+    id: "posto05",
+    nome: "Zona Lazer Run & Circuito Ativo",
+    local: "Campo 1",
+    descricao: "Testa a tua pontaria com desafios de mira e diverte-te com jogos que põem à prova o teu equilíbrio, agilidade e energia!"
+  },
+  {
+    id: "posto06",
+    nome: "APEAEEDC - Insufláveis",
+    local: "Campo 2",
+    descricao: "Espaço saltitante e cheio de energia garantido pela Associação de Pais! Gargalhadas e diversão para todos!"
+  },
+  {
+    id: "posto07",
+    nome: "Ciência Viva",
+    local: "CN4",
+    descricao: "Explora a Físico-Química com reações, forças e energia à solta! Uma aventura científica para mentes curiosas."
+  },
+  {
+    id: "posto08",
+    nome: "Tec & Futuro",
+    local: "Sala XXI",
+    descricao: "Atividades tecnológicas desde robótica, impressão 3D e ideias criativas sobre o futuro!"
+  },
+  {
+    id: "posto09",
+    nome: "Educação Visual & Ateliers",
+    local: "ET3, EV3 e Sala 12",
+    descricao: "Espaço para desenhar, pintar, construir e dar asas à tua imaginação com materiais artísticos."
+  },
+  {
+    id: "posto10",
+    nome: "Espaço das Línguas",
+    local: "Sala 11",
+    descricao: "Descobre culturas, línguas, expressões criativas e diverte-te com jogos linguísticos!"
+  }
 ];
 
 const loadProgress = () => {
