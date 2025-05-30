@@ -85,9 +85,56 @@ export default function PassaporteDigitalApp() {
 
   if (!progresso.jogador) {
     return (
-      <div className="p-4 max-w-md mx-auto">
+      <>
+        <div className="mb-6">
+          <img src="/Cartaz Dia Diogo Cão25.png" alt="Cartaz Dia Diogo Cão" className="rounded-xl shadow mb-4 w-full" />
+        </div>
+    <div className="mb-6">
+      <img src="/Cartaz Dia Diogo Cão25.png" alt="Cartaz Dia Diogo Cão" className="rounded-xl shadow mb-4 w-full" />
+    <div className=\"p-4 max-w-md mx-auto\">
         <div className="border rounded-xl p-4 shadow">
           <h1 className="text-xl font-bold mb-4">Bem-vindo ao Passaporte Digital!</h1>
+          <input
+            className="w-full p-2 border rounded"
+            placeholder="Insere o teu nome de jogador"
+            value={nomeJogador}
+            onChange={(e) => setNomeJogador(e.target.value)}
+          />
+          <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded" onClick={handleLogin}>Entrar</button>
+        </div>
+      </div>
+      </>
+    );
+  }
+
+  const todosVisitados = progresso.visitados.length === postos.length;
+
+  return (
+    <div className="p-4 max-w-2xl mx-auto">
+      <h2 className="text-2xl font-semibold mb-4">Olá, {progresso.jogador}!</h2>
+      <p className="mb-4">Visitaste {progresso.visitados.length} de {postos.length} postos.</p>
+
+      {todosVisitados && (
+        <div className="mb-4 p-4 bg-green-100 rounded-xl shadow">🎉 Parabéns! Completaste o passaporte! Vai ao posto de controlo levantar o teu prémio.</div>
+      )}
+
+      <div className="mb-4">
+        <button className="px-4 py-2 bg-green-600 text-white rounded" onClick={iniciarScanner}>📷 Ler QR Code</button>
+      </div>
+
+      <div id="scanner" className="mb-4" />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {postos.map((posto) => (
+          <div key={posto.id} className={`border p-4 rounded shadow ${progresso.visitados.includes(posto.id) ? "bg-green-50" : ""}`}>
+            <h3 className="font-bold text-lg cursor-pointer" onClick={() => setExpandido(expandido === posto.id ? null : posto.id)}>{posto.nome}</h3>
+            <p className="text-sm">Local: {posto.local}</p>
+            <p className="text-xs mt-2">{progresso.visitados.includes(posto.id) ? "✅ Visitado" : "⏳ Por visitar"}</p>
+            {expandido === posto.id && (
+              <p className="mt-2 text-sm text-gray-700">{posto.descricao}</p>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
