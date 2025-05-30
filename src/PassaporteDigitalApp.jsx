@@ -34,7 +34,9 @@ function App() {
   const [visitados, setVisitados] = useState([]);
 
   useEffect(() => {
-    if (!nome) return; // só inicializa o scanner se o nome já estiver definido
+    if (!nome) return;
+    const element = document.getElementById("reader");
+    if (!element) return;
 
     const scanner = new Html5QrcodeScanner("reader", {
       fps: 10,
