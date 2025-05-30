@@ -34,6 +34,8 @@ function App() {
   const [visitados, setVisitados] = useState([]);
 
   useEffect(() => {
+    if (!nome) return; // só inicializa o scanner se o nome já estiver definido
+
     const scanner = new Html5QrcodeScanner("reader", {
       fps: 10,
       qrbox: 250
@@ -42,14 +44,14 @@ function App() {
     scanner.render(
       (decodedText) => {
         if (!visitados.includes(decodedText) && postos.find(p => p.id === decodedText)) {
-          setVisitados([...visitados, decodedText]);
+          setVisitados(prev => [...prev, decodedText]);
         }
       },
       (error) => console.warn(error)
     );
 
     return () => scanner.clear().catch(err => console.error(err));
-  }, [visitados]);
+  }, [nome]);
 
   const postosCompletos = visitados.length;
   const totalPostos = postos.length;
@@ -81,8 +83,8 @@ function App() {
               const posto = postos.find(p => p.id === id);
               return (
                 <li key={id}>
-                  <strong>{posto.nome}</strong><br/>
-                  <em>{posto.local}</em><br/>
+                  <strong>{posto.nome}</strong><br />
+                  <em>{posto.local}</em><br />
                   <p>{posto.descricao}</p>
                 </li>
               );
@@ -94,8 +96,8 @@ function App() {
           <ul>
             {postos.map(p => (
               <li key={p.id}>
-                <strong>{p.nome}</strong><br/>
-                <em>{p.local}</em><br/>
+                <strong>{p.nome}</strong><br />
+                <em>{p.local}</em><br />
                 <p>{p.descricao}</p>
               </li>
             ))}
@@ -105,5 +107,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
