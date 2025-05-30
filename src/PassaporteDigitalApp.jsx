@@ -29,7 +29,6 @@ const postos = [
   { id: "posto24", nome: "Palco Harmonia - Sottovoce", local: "Polivalente", descricao: "Docentes e não docentes celebram o Dia Diogo Cão com música e união!" }
 ];
 
-
 function App() {
   const [nome, setNome] = useState("");
   const [visitados, setVisitados] = useState([]);
@@ -73,24 +72,36 @@ function App() {
           {postosCompletos === totalPostos && (
             <p>🎉 Parabéns! Completaste o passaporte! Vai ao posto de controlo levantar o teu prémio.</p>
           )}
+
+          <div id="reader" style={{ width: "100%", maxWidth: 400, margin: "20px auto" }}></div>
+
+          <h3>📍 Postos Visitados:</h3>
+          <ul>
+            {visitados.map(id => {
+              const posto = postos.find(p => p.id === id);
+              return (
+                <li key={id}>
+                  <strong>{posto.nome}</strong><br/>
+                  <em>{posto.local}</em><br/>
+                  <p>{posto.descricao}</p>
+                </li>
+              );
+            })}
+            {visitados.length === 0 && <li>Ainda não visitaste nenhum posto.</li>}
+          </ul>
+
+          <h3 style={{ marginTop: 40 }}>🗺️ Todos os Postos Disponíveis:</h3>
+          <ul>
+            {postos.map(p => (
+              <li key={p.id}>
+                <strong>{p.nome}</strong><br/>
+                <em>{p.local}</em><br/>
+                <p>{p.descricao}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
-
-      <div id="reader" style={{ width: "100%", maxWidth: 400, margin: "20px auto" }}></div>
-
-      <h3>Postos Visitados:</h3>
-      <ul>
-        {visitados.map(id => {
-          const posto = postos.find(p => p.id === id);
-          return (
-            <li key={id}>
-              <strong>{posto.nome}</strong><br/>
-              <em>{posto.local}</em><br/>
-              <p>{posto.descricao}</p>
-            </li>
-          );
-        })}
-      </ul>
     </div>
   );
 }
