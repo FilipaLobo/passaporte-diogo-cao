@@ -1,32 +1,11 @@
+// Código JSX da app colorida com estilo atualizado
 import React, { useState, useEffect } from "react";
 import { Html5QrcodeScanner } from "html5-qrcode";
 
-const postos = [
-  { id: "diogolandia", nome: "Diogolândia", local: "Pavilhão 1" },
-  { id: "transito", nome: "Escola Fixa de Trânsito", local: "Campo junto ao Pavilhão 1" },
-  { id: "palco-maravilhas", nome: "Palco das Maravilhas", local: "Campo com coberto" },
-  { id: "rececao", nome: "Receção", local: "Entrada da escola" },
-  { id: "lazer", nome: "Zona Lazer Run & Circuito Ativo", local: "Campo 1" },
-  { id: "insuflaveis", nome: "APEAEEDC - Insufláveis", local: "Campo 2" },
-  { id: "ciencia-viva", nome: "Ciência Viva", local: "CN4" },
-  { id: "tecnologia", nome: "Tec & Futuro", local: "Sala XXI" },
-  { id: "artes", nome: "Educação Visual & Ateliers", local: "ET3, EV3 e Sala12" },
-  { id: "linguas", nome: "Espaço das Línguas", local: "Sala 11" },
-  { id: "matematica2c", nome: "Matemática 2.º Ciclo", local: "Sala 10" },
-  { id: "matematica3c", nome: "Matemática 3.º Ciclo", local: "Tenda à frente CN3" },
-  { id: "ciencias", nome: "Ciências", local: "CN3" },
-  { id: "erasmus", nome: "Posto Erasmus", local: "Sala 13" },
-  { id: "fico", nome: "Fico na Escola", local: "CN2" },
-  { id: "religiao", nome: "Religião e Moral", local: "A definir" },
-  { id: "cidadania", nome: "Cidadania", local: "A definir" },
-  { id: "csh", nome: "Ciências Sociais e Humanas", local: "A definir" },
-  { id: "caa", nome: "Centro de Apoio à Aprendizagem", local: "Sala 5" },
-  { id: "space", nome: "Diogo Cão Space Center", local: "Recreio Pavilhão 2" },
-  { id: "alimentacao", nome: "Avenida da Alimentação", local: "Coberto e Barraquinhas" },
-  { id: "biblioteca", nome: "Biblioteca", local: "Biblioteca" },
-  { id: "refeitorio", nome: "Refeitório", local: "Refeitório" },
-  { id: "palco-harmonia", nome: "Palco Harmonia", local: "Polivalente" }
-];
+const postos = [...Array(24)].map((_, i) => ({
+  id: `posto${i + 1}`,
+  nome: `Posto ${i + 1}`
+}));
 
 const loadProgress = () => {
   const data = localStorage.getItem("passaporte-progress");
@@ -78,12 +57,16 @@ export default function PassaporteDigitalApp() {
 
   if (!progresso.jogador) {
     return (
-      <div className="p-4 max-w-md mx-auto">
-        <div className="border rounded-xl p-4 shadow">
-          <h1 className="text-xl font-bold mb-4">Bem-vindo ao Passaporte Digital!</h1>
-          <input className="w-full p-2 border rounded" placeholder="Insere o teu nome de jogador" value={nomeJogador} onChange={(e) => setNomeJogador(e.target.value)} />
-          <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded" onClick={handleLogin}>Entrar</button>
-        </div>
+      <div className="container">
+        <h1>Dia Diogo Cão</h1>
+        <h2>Passaporte Digital</h2>
+        <input
+          className="input"
+          placeholder="Nome do Jogador"
+          value={nomeJogador}
+          onChange={(e) => setNomeJogador(e.target.value)}
+        />
+        <button onClick={handleLogin}>Entrar</button>
       </div>
     );
   }
@@ -91,18 +74,17 @@ export default function PassaporteDigitalApp() {
   const todosVisitados = progresso.visitados.length === postos.length;
 
   return (
-    <div className="p-4 max-w-2xl mx-auto">
-      <h2 className="text-2xl font-semibold mb-4">Olá, {progresso.jogador}!</h2>
-      <p className="mb-4">Visitaste {progresso.visitados.length} de {postos.length} postos.</p>
-      {todosVisitados && <div className="mb-4 p-4 bg-green-100 rounded-xl shadow">🎉 Parabéns! Completaste o passaporte!</div>}
-      <div className="mb-4"><button className="px-4 py-2 bg-green-600 text-white rounded" onClick={iniciarScanner}>📷 Ler QR Code</button></div>
-      <div id="scanner" className="mb-4" />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="container">
+      <h1>Dia Diogo Cão</h1>
+      <h2>Olá, {progresso.jogador}!</h2>
+      <p>Visitaste {progresso.visitados.length} de {postos.length} postos</p>
+      {todosVisitados && <div className="congrats">🎉 Completaste o passaporte!</div>}
+      <div id="scanner" />
+      <button onClick={iniciarScanner}>📷 Ler Código QR</button>
+      <div className="grid">
         {postos.map((posto) => (
-          <div key={posto.id} className={`border p-4 rounded shadow ${progresso.visitados.includes(posto.id) ? "bg-green-50" : ""}`}>
-            <h3 className="font-bold text-lg">{posto.nome}</h3>
-            <p className="text-sm">Local: {posto.local}</p>
-            <p className="text-xs mt-2">{progresso.visitados.includes(posto.id) ? "✅ Visitado" : "⏳ Por visitar"}</p>
+          <div key={posto.id} className={`posto ${progresso.visitados.includes(posto.id) ? "visitado" : ""}`}>
+            {posto.nome}
           </div>
         ))}
       </div>
